@@ -5,7 +5,7 @@ require_once('../includes/activity-logger.php');
 define('BASE_URL','http://localhost/it34a');
 
 define('DB_HOST','localhost');
-define('DB_NAME','it34a');
+define('DB_NAME','it34a_lab_db');
 define('DB_USER','root');
 define('DB_PASS','');
 
@@ -19,11 +19,15 @@ try{
         DB_PASS,
         [PDO::ATTR_ERRMODE -> PDO::ERRMODE_EXCEPTION]
     );
-    //
-    //echo ("Connection Successful");
-    //echo ($user_id . $user_email . 'connect_db','success');
-    //logActivity($pdo,$user_id,$user_email,'connect_db','success');
     
+    $success = logActivity($pdo,$user_id,$user_email,'db_connect','success');
+    
+    if($success){
+        echo "Activity log inserted successfully";
+    } else {
+        echo "Failed to insert activity log";
+    }
+
 } catch(PDOException $e){
     die("Connection Failed: " . $e->getMessage());
 }

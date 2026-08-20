@@ -29,4 +29,10 @@ function logActivity($pdo,$user_id,$user_email,$action,$status='success'){
         return false;
     }
 }
+
+    if($success){
+        echo "Activity log inserted successfully";
+    } else {
+        echo "Failed to insert activity log";
+    }
 ?>

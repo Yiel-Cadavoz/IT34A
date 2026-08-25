@@ -17,10 +17,10 @@ function logActivity($pdo,$user_id,$user_email,$action,$status='success'){
         INSERT INTO activity_logs(
         user_id,
         user_email,
-        activty_log_action,
-        activty_log_status,
-        activty_log_ip_address,
-        activty_log_user_agent
+        activity_log_action,
+        activity_log_status,
+        activity_log_ip_address,
+        activity_log_user_agent
         ) VALUES (?,?,?,?,?,?)
         ");
 
@@ -37,14 +37,9 @@ function logActivity($pdo,$user_id,$user_email,$action,$status='success'){
         return $success;
 
     } catch (PDOException $e) {
-        error_log("Activty Log Error: " . $e->getMessage());
+        error_log("Activity Log Error: " . $e->getMessage());
         return false;
     }
 }
 
-    if($success){
-        echo "Activity log inserted successfully";
-    } else {
-        echo "Failed to insert activity log";
-    }
 ?>

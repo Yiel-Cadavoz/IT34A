@@ -57,5 +57,4 @@ function requireRole($role){
         die('Access Denied');
     }
 }
-
 ?>

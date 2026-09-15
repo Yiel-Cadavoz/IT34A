@@ -20,7 +20,7 @@ try{
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
     
-    $success = logActivity($pdo,$user_id,$user_email,'db_connect','success');
+   // $success = logActivity($pdo,$user_id,$user_email,'db_connect','success');
 
 } catch(PDOException $e){
     die("Connection Failed: " . $e->getMessage());

@@ -1,7 +1,6 @@
 <?php
 require 'config/config.php';
 require 'config/functions.php';
-require 'includes/activity-logger.php';
 
 if(isset($_SESSION['user_id'])){
     header('Location: '. BASE_URL . '/app/' . $_SESSION['user_role']. '/index.php');
@@ -14,14 +13,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $login = trim($_POST['login'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if(loginUser($pdo,$login,$password)){
-        header('Location: '. BASE_URL . '/app/' . $_SESSION['user_role']. '/index.php');
-        exit;
-    }
-
-    $error = 'Invalid Login Credentials';
-
-    if($logIn===' ' || $password===' '){
+    if($logIn==='' || $password===''){
         $error = 'Invalid login credentials';
         logActivity(
             $pdo,
@@ -40,6 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             'login',
             'success'
         );
+
 
         header('Location: '. BASE_URL . '/app/' . $_SESSION['user_role']. '/index.php');
         exit;

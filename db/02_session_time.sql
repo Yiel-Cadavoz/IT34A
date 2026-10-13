@@ -1,5 +1,5 @@
 CREATE TABLE user_sessions(
-    session_id INT AUTO_INCREMENT PRIMARY_KEY,
+    session_id INT AUTO_INCREMENT PRIMARY KEY,
 
     user_id INT NOT NULL,
 

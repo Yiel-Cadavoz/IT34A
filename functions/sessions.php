@@ -29,8 +29,8 @@ function startUserSession($pdo){
 
 }
 
-    //End user session
-    function endUserSession($pdo){
+//End user session
+function endUserSession($pdo){
 
     if(!isset($_SESSION['session_id'])){
         return false;
@@ -53,5 +53,23 @@ function startUserSession($pdo){
     return $stmt->execute([
         'session_id' => $session_id
     ]);
-    }
+}
+
+// Function Check User for Active Session
+function hasActiveUserSession($pdo,$user_id){
+
+    $stmt = $pdo->prepare("
+        SELECT session_id
+        FROM user_sessions
+        WHERE user_id = :user_id
+        AND session_end IS NULL
+        LIMIT 1
+    ");
+
+    $stmt->execute([
+        'user_id' => $user_id
+    ]);
+
+    return (bool) $stmt->fetchColumn();
+}
 ?>

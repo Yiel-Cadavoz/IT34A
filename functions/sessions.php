@@ -26,6 +26,9 @@ function startUserSession($pdo){
 
     return $pdo->lastInsertId();
 
+
+}
+
     //End user session
     function endUserSession($pdo){
 
@@ -51,6 +54,4 @@ function startUserSession($pdo){
         'session_id' => $session_id
     ]);
     }
-}
-
 ?>

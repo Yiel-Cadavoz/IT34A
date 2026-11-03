@@ -1,5 +1,6 @@
 <?php
-require 'config/config.php';
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/functions/csrf.php';
 
 if(isset($_SESSION['user_id'])){
     header('Location: '. BASE_URL . '/app/' . $_SESSION['user_role']. '/index.php');
@@ -9,6 +10,7 @@ if(isset($_SESSION['user_id'])){
 $error = '';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    requireCsrfToken();
     $login = trim($_POST['login'] ?? '');
     $password = $_POST['password'] ?? '';
 
@@ -65,6 +67,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <h1>User Login</h1>
     <form method="POST">
         <label> Username or email </label>
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCsrfToken())?>" >
         <input type="text"
                 name="login"
                 required
